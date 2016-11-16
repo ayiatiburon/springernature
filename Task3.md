@@ -1,47 +1,58 @@
-#Springer Nature Task 1
-
-###Assumption: The answers for this task are using the assumption and POV that a QA presence is present from the beginning of development on the Search Functionality.  
-
-####1.1 What considerations would you take into account to ensure the overall quality of the area under test
-
-The first objective is to define what is the actual "Area Under Test" for this story:
-- Are we testing only the "search field" and button?
-- Are we testing the facets, and "Advanced Search"? 
-- Do we need to take into account a separate database of titles/resources once a user has logged in?
-
-Once the components to be tested have been defined, the overall scope has to be clarified:
-- What are the Functional Requirements?
-    * Are there any ambiguities in the Requirements?
-    * Has the BA correctly identified the Requrements from the Product Owner?
-    * Have each of the Acceptance Criteria been explained to, and understood by BA, Dev (front and backend) and QA?
-    * Is there an API or "source of truth" that can be used to verify the correct search results are displayed in the result section?
-- Will any Non-Functional testing be required for this iteration? 
-    * If so, will the tests indlude:
-        * **Usability and Accessibility testing?**
-            * Have the designs from UX & Design been signed off by relevant parties, so that the team is aware of how the component should function & look?
-            * To what level does the search functionality accessibility need to adhere to?            
-        * **Load testing:** 
-            * What are the number of page loads expected per minute? How many should be realistically handled?
-            * What are the number of search requests expected per minute? How many should be realistically handled?
-        * **Performance testing:**
-            * What is the expected response time for a page load/search request? What is the maximum time allowed under stress?
-        * **Security:**
-            * Will a basic OWASP Top 10 check be done on the page, or will this be carried out by a Third Party?
-
-Depending on the actual scope of the Requirements, there may will usually be a need for both static and dynamic testing at Component, Integration, System Integration and User Acceptance levels.
-
-Each of these factors need to be taken into consideration for each Task/Story, each Component & Use Case/Epic.
-####1.2 Overview of the approach you took to your testing and why
-
-1. The first step is to clarify the Requirements/Acceptance Criteria. **This step involves static testing.** If there is any minor misunderstanding or ambiguity in the story that is given to the Tech team to implement, it can have a large cost - in terms of time and money.
-   1. **Finding and resolving potential issues as early as possible is vitally important on any project.**
-2. Once the Requirements are understood by all, then the tech team need to agree on and understand the apprach to satisfy the requirements - again this is a **static testing phase.**
-3. When development begins, tests need to be written for each of the Acceptance Criteria in order to verify correct functionality 
-    1. If automation is to be carried out on the project, writing the manual tests in a Gherkin format will allow the transition from manual to automated scripts easier
-4. A Risk Assessment matrix (Likeliness of Occurance vs Impact) of test cases should be sketchout out in order to determine what order to target testing  
-5. Based on the Risk Assessment Matrix, and testcases derived from requirements for the task/story, the necessary tests should be carried out against the component
-6. Once all Functional and Non-Functional tests have been completed, the results are collated, and depending on the number of Major to Blocking bugs that may still be open (or possibly don't exist), a report is presented to the Product Owner containing the results, and a decision is made whether to release the component/product, or to defer release while any remaining bugs or functionality are completed 
+#Springer Nature Task 3
 
 
+##Assumption: Tests to be completed before a release are executed on a test environment as close to Production as possible.
 
+####3.1 What questions you would ask of the customer to ensure requirements are met
+- Does a "Forgotten Password" function already exist, or is this actually a change request?
+- What User Account management is used? Is there a 3rd party IdP?
+- How does the current "Forgotten Password" function work?
+- How are your passwords stored? If they are in plain text, a one-way hash encryption is strontly recommended in order to provide an added layer of security to users
+- Over what time period is the user not allowed to use the same password twice? 
+- How will the "question/answer prompt" function?
+   - If a user chooses to add this functionality:
+        - At what point in the user journey will they encounter this prompt? 
+        - How do users recover accounts if they forget the answer to their question?
+        - How will the question/answer be stored? The Question is Plain text, the Answer is enctypted?
+        - Will the answer be case sensitive?
+        - What are valid characters, mix/max chars for the question and answer?
+- Will the password check be case sensitive? If so... how can this be confirmed if the password is encrypted?
+- Can the user enter their own question, or do they need to pick from a set list?
+    - If the questions are from a set list, are the questions localised for different languages?
+- Can the user disable the question/answer pair?
+         
+####3.2 What tools/environment setup you may need in order to test this change and how would you come to this decision
+**Tools:**
+- Ruby/Cucumber/WATIR
+- JMeter for load tests
 
+**Environment:**
+- An environment that is able to provide user login, access a subset of test data, and allow password reset
+- This environment doesn't need to connect to a production User DB, but at least a test DB that would allow QA control of User Accounts (to set accounts in various states - un/activated, deleted)
+- The environment should be able to have updated code deployed to it to test updates/bug fixes
+ 
+ 
+####3.3 What tests you would carry out when this new functionality has been developed
+**Regression:**
+- Regression test that not having the option for a question/answer prompt still allows users to reset their password
+
+**Functionality:**
+- Verify the user is able to set a custom question/answer pair
+- Verify when the user is able to click a "Forgotten Password" link or button to start the journey
+- Verify that if the user has enabled the custom question/answer pair, that they are prompted at the correct point in time
+- Verify that the user is able to reset their password with the custom question/answer pair enabled
+- Verify the user cannot enter the same password twice (the time period is to be defined)
+
+**Cross Browser:**
+- Verify reset password capability across the Browser Matrix
+
+**Security:**
+- Verify question/answer details are not stored insecurely
+
+**Exploratory:**
+- If two sessions are opened simultaneously, and both reset the password with different strings at the same time, is an error thrown?
+- If two sessions are opened simultaneously, and both add a different question/answer pair, is an error thrown?
+ 
+**Accessibility:**
+- Can a user add a question/answer pair using just their keyboard?
+- Do all elements in the reset password journey contain correct "alt" tags and descriptions?
