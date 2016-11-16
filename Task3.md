@@ -1,9 +1,9 @@
-#Springer Nature Task 3
+##Springer Nature Task 3
 
 
-##Assumption: Tests to be completed before a release are executed on a test environment as close to Production as possible.
+###Assumption: Tests to be completed before a release are executed on a test environment as close to Production as possible.
 
-####3.1 What questions you would ask of the customer to ensure requirements are met
+##3.1 What questions you would ask of the customer to ensure requirements are met
 - Does a "Forgotten Password" function already exist, or is this actually a change request?
 - What User Account management is used? Is there a 3rd party IdP?
 - How does the current "Forgotten Password" function work?
@@ -21,7 +21,7 @@
     - If the questions are from a set list, are the questions localised for different languages?
 - Can the user disable the question/answer pair?
          
-####3.2 What tools/environment setup you may need in order to test this change and how would you come to this decision
+##3.2 What tools/environment setup you may need in order to test this change and how would you come to this decision
 **Tools:**
 - Ruby/Cucumber/WATIR
 - JMeter for load tests
@@ -32,7 +32,7 @@
 - The environment should be able to have updated code deployed to it to test updates/bug fixes
  
  
-####3.3 What tests you would carry out when this new functionality has been developed
+##3.3 What tests you would carry out when this new functionality has been developed
 **Regression:**
 - Regression test that not having the option for a question/answer prompt still allows users to reset their password
 
