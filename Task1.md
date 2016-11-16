@@ -2,7 +2,7 @@
 
 ###Assumption: The answers for this task are using the assumption and POV that a QA presence is present from the beginning of development on the Search Functionality.  
 
-####1.1 What considerations would you take into account to ensure the overall quality of the area under test
+##1.1 What considerations would you take into account to ensure the overall quality of the area under test
 
 The first objective is to define what is the actual "Area Under Test" for this story:
 - Are we testing only the "search field" and button?
@@ -41,7 +41,7 @@ Depending on the actual scope of the Requirements, there may usually be a need f
 Each of these factors need to be taken into consideration for each Task/Story, each Component & Use Case/Epic.
 
 
-####1.2 Overview of the approach you took to your testing and why
+##1.2 Overview of the approach you took to your testing and why
 
 1. The first step is to clarify the Requirements/Acceptance Criteria. **This step involves static testing.** If there are any minor misunderstandings or ambiguities in the story that is given to the Tech team to implement, it can have a large cost - in terms of time and money.
     1. **Finding and resolving potential issues as early as possible is vitally important on any project.**
@@ -57,7 +57,7 @@ Each of these factors need to be taken into consideration for each Task/Story, e
     1. This allows all levels (Tech team, PM, BA, PO) to be fully aware of any bugs that may not be resolved, or any functionality that hasn't been completed. Using the Risk Assessment matrix, a joint descision can be made as to whether the iteration will be released or not
 
 
-####1.3 Summary of what you tested and why
+##1.3 Summary of what you tested and why
 I would firstly create, and then adhere to the Risk Assessment Matrix, so I would test in the following order:
 
 **API Testing:**
