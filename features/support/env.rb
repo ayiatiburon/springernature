@@ -6,6 +6,11 @@ require 'page-object'
 require 'colorize'
 require 'facets'
 
+require_relative '../../features/support/pages/biomedcentral/home_page'
+require_relative '../../features/support/pages/biomedcentral/search_page'
+require_relative '../../features/support/pages/springerlink/home_page'
+require_relative '../../features/support/pages/springerlink/search_page'
+
 #due to a lack of knowledge of the rest of the Springer Nature sites, and possible pages, this is a minimalistic [and hardcoded] list of pages - I would rather get this list dynamically if possible
 #understandably, this is overkill - but its just to demonstrate that URLs shouldn't need to be hardcoded, and can be kept in a central place for easier maintenance
 $global_pages = {
